@@ -6,15 +6,11 @@ export default function Layout(props) {
     console.log('layout router', router);
     
     return (
-        <div className={`Layout ${props.className}`}>
+        <div className={`Layout ${props.className}`} style={{ position: 'relative' }}>
             <header className='NavBar' data-r-1343>
                 header
             </header>
-            <section className='Main' style={{ position: 'relative' }}>
-                {
-                    props.children
-                }
-            </section>
+            { props.children }
         </div>
     )
 }

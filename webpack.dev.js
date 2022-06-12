@@ -7,16 +7,21 @@ const baseConfig = require('./webpack.config');
 const config = require('./config');
 
 const PORT = process.env.PORT && Number(process.env.PORT) || config.dev.port;
+const HOST = `localhost`;
 
 const options = {
     hot: true,
     contentBase: path.resolve(__dirname, 'dist'), // since we use CopyWebpackPlugin.
-    host: 'localhost',
+    host: HOST,
     open: true,
-    historyApiFallback: true, // 缺少该配置，会出现上面的错误
+    historyApiFallback: true,
 };
 
 const webpackConfig = merge(baseConfig, {
+    devServer: {
+        disableHostCheck: true,
+        https: false,
+    },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
     ],
@@ -27,7 +32,7 @@ const compiler = webpack(webpackConfig);
 
 const server = new webpackDevServer(compiler, options);
 
-server.listen(PORT, 'localhost', () => {
+server.listen(PORT, HOST, () => {
     console.log('dev server listening on port ', PORT);
 });
 

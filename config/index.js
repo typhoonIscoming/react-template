@@ -19,12 +19,13 @@ function getIPAdress() {
 }
 
 module.exports = {
+    getIP: getIPAdress,
     dev: {
         assetsPublicPath: './',
         errorOverlay: true,
         autoOpenBrowser: true,
         host: '0.0.0.0',
-        port: '8000',
+        port: '8080',
         proxyTable: {},
         poll: false,
     },
