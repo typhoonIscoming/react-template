@@ -16,6 +16,14 @@
             {
                 "regenerator": false
             }
+        ],
+        [
+            "import",
+            {
+                "libraryName": "antd",
+                "libraryDirectory": "es",
+                "style": true
+            }
         ]
     ]
 }

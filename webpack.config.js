@@ -2,6 +2,8 @@ const path = require("path");
 const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const resolve = (relativePath) => path.resolve(__dirname, relativePath);
 
@@ -94,7 +96,8 @@ module.exports = {
         minimizer: [
             new TerserPlugin({
                 extractComments: false, // 去除模块中的LICENSE.txt文件
-            })
+            }),
+            new CssMinimizerPlugin(),
         ],
     },
     module: {
@@ -115,11 +118,27 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                use: ['style-loader', 'css-loader', 'postcss-loader'],
             },
             {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
+            {
+                test: /\.less$/,
+                use: ['style-loader', 'css-loader', {
+                    loader: 'less-loader',
+                    options: {
+                        lessOptions: {
+                            javascriptEnabled: true,
+                            postcssOptions: {
+                                plugins: [
+                                    'postcss-preset-env'
+                                ]
+                            },
+                        },
+                    },
+                }],
             },
         ],
     },
