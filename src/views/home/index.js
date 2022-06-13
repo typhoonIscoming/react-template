@@ -1,9 +1,6 @@
-import React from 'react';
+import React, { useTransition, useState } from 'react';
 import Layout from '@/components/layout';
 import RouterContext from '@/context/routerContext';
-
-import Sider from '@/components/sider';
-import Main from '@/components/main';
 
 import './home.scss';
 
@@ -12,12 +9,7 @@ export default function Home(props) {
         <RouterContext.Provider value={props}>
             <Layout className="LayoutHome">
                 <div className='Home'>
-                    <Sider />
-                    <Main>
-                        <div className='container'>
-                            main
-                        </div>
-                    </Main>
+                Home
                 </div>
             </Layout>
         </RouterContext.Provider>

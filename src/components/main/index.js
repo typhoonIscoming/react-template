@@ -6,7 +6,6 @@ import './index.scss';
 const MainContainer = styled.div`
     display: block;
     margin-top: var(--header-height);
-    min-height: 100vh;
     .MainContent{
         margin: 0 auto;
         padding: 0 1.5rem 4rem;
