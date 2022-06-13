@@ -5,7 +5,7 @@ import RouterContext from '@/context/routerContext';
 import { Button, Checkbox } from 'antd';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
-import './home.css';
+import './home.scss';
 
 export default function Home(props) {
     const [isAccess, setAccess] = useState(false);

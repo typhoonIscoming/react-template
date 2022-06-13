@@ -92,7 +92,7 @@ module.exports = {
                 },
             },
         },
-
+        minimize: true,
         minimizer: [
             new TerserPlugin({
                 extractComments: false, // 去除模块中的LICENSE.txt文件
@@ -122,7 +122,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
             },
             {
                 test: /\.less$/,
