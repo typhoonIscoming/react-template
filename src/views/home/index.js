@@ -3,17 +3,25 @@ import Layout from '@/components/layout';
 import RouterContext from '@/context/routerContext';
 
 import { Button, Checkbox } from 'antd';
-import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import { CSSTransition, SwitchTransition, TransitionGroup } from 'react-transition-group';
 
 import './home.scss';
 
 export default function Home(props) {
     const [isAccess, setAccess] = useState(false);
     const [checked, setChecked] = useState(true);
+    const arr = [{ name: 'tom' }, { name: 'Bob' }, { name: 'Alice' }];
+    const [list, setList] = useState(arr)
     const onChange = (e) => {
         console.log('checked = ', e.target.checked);
         setChecked(!checked);
     };
+    const onSetList = () => {
+        const random = Math.floor(Math.random() * 100);
+        setList((list) => {
+            return list.concat([{ name: `bob_${random}` }])
+        })
+    }
     return (
         <RouterContext.Provider value={props}>
             <Layout className="LayoutHome">
@@ -33,6 +41,22 @@ export default function Home(props) {
                                 </span>
                         </CSSTransition>
                     </SwitchTransition>
+                    <div>
+                        <TransitionGroup>
+                            {
+                                list.map((item, index) => {
+                                    return (
+                                        <CSSTransition classNames="friend" timeout={300} key={index}>
+                                        <div>{item.name}</div>
+                                        </CSSTransition>
+                                    )
+                                })
+                            }
+                        </TransitionGroup>
+                        <Button onClick={onSetList}>
+                            增加
+                        </Button>
+                    </div>
                 </div>
             </Layout>
         </RouterContext.Provider>

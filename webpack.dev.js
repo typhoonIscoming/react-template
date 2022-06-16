@@ -7,7 +7,7 @@ const baseConfig = require('./webpack.config');
 const config = require('./config');
 
 const PORT = process.env.PORT && Number(process.env.PORT) || config.dev.port;
-const HOST = `localhost`;
+const HOST = config.getIP();
 
 const options = {
     hot: true,
