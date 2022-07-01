@@ -1,14 +1,20 @@
 const path = require("path");
-const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
+
+const CssLoaderOptions = require('./config/css-loader');
 
 const resolve = (relativePath) => path.resolve(__dirname, relativePath);
 
-const appDirectory = fs.realpathSync(process.cwd());
-console.log("appDirectory", appDirectory);
+// const appDirectory = fs.realpathSync(process.cwd());
+// console.log("appDirectory", appDirectory);
+// npm_lifecycle_event: 'dev',
+
+const env = process.env.NODE_ENV
+console.log('env', env)
 
 module.exports = {
     mode: "development",
@@ -39,6 +45,8 @@ module.exports = {
                 // more options: https://github.com/kangax/html-minifier#options-quick-reference
             },
         }),
+        new NodePolyfillPlugin(),
+        new MiniCssExtractPlugin(),
     ],
     optimization: {
         /**
@@ -118,15 +126,15 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader'],
+                use: [MiniCssExtractPlugin.loader, CssLoaderOptions, 'postcss-loader'],
             },
             {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+                use: [MiniCssExtractPlugin.loader, CssLoaderOptions, 'postcss-loader', 'sass-loader'],
             },
             {
                 test: /\.less$/,
-                use: ['style-loader', 'css-loader', {
+                use: [MiniCssExtractPlugin.loader, CssLoaderOptions, {
                     loader: 'less-loader',
                     options: {
                         lessOptions: {

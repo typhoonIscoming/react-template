@@ -5,7 +5,7 @@ import RouterContext from '@/context/routerContext';
 import { Button, Checkbox } from 'antd';
 import { CSSTransition, SwitchTransition, TransitionGroup } from 'react-transition-group';
 
-import './home.scss';
+import homeStyle from './home.scss';
 
 export default function Home(props) {
     const [isAccess, setAccess] = useState(false);
@@ -25,7 +25,7 @@ export default function Home(props) {
     return (
         <RouterContext.Provider value={props}>
             <Layout className="LayoutHome">
-                <div className='Home'>
+                <div className={homeStyle.Home}>
                     <Button onClick={() => setAccess((val) => !val)}>
                         {isAccess ? "on": "off"}
                     </Button>

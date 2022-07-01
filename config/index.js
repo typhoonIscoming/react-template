@@ -25,7 +25,7 @@ module.exports = {
         errorOverlay: true,
         autoOpenBrowser: true,
         host: '0.0.0.0',
-        port: '8080',
+        port: '8088',
         proxyTable: {},
         poll: false,
     },

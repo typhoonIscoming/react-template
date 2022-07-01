@@ -7,7 +7,7 @@ const SiderContainer = styled.div`
     bottom: 0;
     left: 0;
     z-index: 6;
-    border-right: 1px solid rgba(60, 60, 67, 0.12);
+    border-right: 1px solid #3c3c431f;
     width: 16.4rem;
     // background-color: green;
     overflow-y: auto;
