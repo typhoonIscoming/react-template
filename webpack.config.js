@@ -3,7 +3,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const CssLoaderOptions = require('./config/css-loader');
 
@@ -47,6 +48,12 @@ module.exports = {
         }),
         new NodePolyfillPlugin(),
         new MiniCssExtractPlugin(),
+        new CopyWebpackPlugin([
+            {
+                    from: path.resolve(__dirname, "static"),
+                    to: 'static',
+            }
+        ])
     ],
     optimization: {
         /**
