@@ -1,5 +1,5 @@
 import React, { useContext, Suspense, useState } from 'react';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 
 import { IntlProvider } from 'react-intl'; // 多语言库
 

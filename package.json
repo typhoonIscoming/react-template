@@ -71,5 +71,6 @@
     ],
     "browser": {
         "child_process": false
-    }
+    },
+    "homepage": "."
 }

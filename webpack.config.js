@@ -24,7 +24,7 @@ module.exports = {
         filename: "[name].bundle.js",
         path: resolve("dist"),
         clean: true,
-        publicPath: "./",
+        publicPath: "/",
     },
     resolve: {
         alias: {
