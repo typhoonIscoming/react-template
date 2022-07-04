@@ -50,8 +50,8 @@ module.exports = {
         new MiniCssExtractPlugin(),
         new CopyWebpackPlugin([
             {
-                    from: path.resolve(__dirname, "static"),
-                    to: 'static',
+                from: path.resolve(__dirname, "static"),
+                to: 'static',
             }
         ])
     ],
@@ -133,27 +133,72 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, CssLoaderOptions, 'postcss-loader'],
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../',
+                        },
+                    },
+                    CssLoaderOptions,
+                    'postcss-loader'
+                ],
             },
             {
                 test: /\.scss$/,
-                use: [MiniCssExtractPlugin.loader, CssLoaderOptions, 'postcss-loader', 'sass-loader'],
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../',
+                        },
+                    },
+                    CssLoaderOptions,
+                    'postcss-loader',
+                    'sass-loader',
+                ],
             },
             {
                 test: /\.less$/,
-                use: [MiniCssExtractPlugin.loader, CssLoaderOptions, {
-                    loader: 'less-loader',
-                    options: {
-                        lessOptions: {
-                            javascriptEnabled: true,
-                            postcssOptions: {
-                                plugins: [
-                                    'postcss-preset-env'
-                                ]
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../',
+                        },
+                    },
+                    CssLoaderOptions,
+                    'postcss-loader',
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            lessOptions: {
+                                javascriptEnabled: true,
+                                postcssOptions: {
+                                    plugins: [
+                                        'postcss-preset-env'
+                                    ]
+                                },
                             },
                         },
                     },
-                }],
+                ],
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)$/,
+                type: 'asset/resource',
+                // dependency: { not: ['url'] },
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10000,
+                            esModule: false,
+                            // name: '[name].[hash:7].[ext]',
+                            name: path.posix.join('static', 'img/[name].[hash:7].[ext]'),
+                        },
+                    },
+                ],
             },
         ],
     },
