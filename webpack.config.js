@@ -25,7 +25,7 @@ module.exports = {
         filename: "[name].bundle.js",
         path: resolve("dist"),
         clean: true,
-        publicPath: "/",
+        publicPath: "./",
     },
     resolve: {
         alias: {
@@ -41,7 +41,7 @@ module.exports = {
             inject: true,
             minify: {
                 removeComments: false,
-                collapseWhitespace: false,
+                collapseWhitespace: true,
                 removeAttributeQuotes: false,
                 // more options: https://github.com/kangax/html-minifier#options-quick-reference
             },
@@ -68,7 +68,7 @@ module.exports = {
          * 对于每个 runtime chunk，导入的模块会被分别初始化，因此如果你在同一个页面中引用多个入口起点，请注意此行为。
          * 你或许应该将其设置为 single，或者使用其他只有一个 runtime 实例的配置
          */
-        // runtimeChunk: "single",
+        runtimeChunk: "single",
         sideEffects: true,
         splitChunks: { // 分割代码块,把公共的分离出来
             cacheGroups: { // 缓存组
@@ -134,12 +134,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            publicPath: '../',
-                        },
-                    },
+                    MiniCssExtractPlugin.loader,
                     CssLoaderOptions,
                     'postcss-loader'
                 ],
@@ -147,27 +142,21 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            publicPath: '../',
-                        },
-                    },
+                    MiniCssExtractPlugin.loader,
                     CssLoaderOptions,
                     'postcss-loader',
+                    // {
+                    //     loader: 'resolve-url-loader',
+                    //     options: { sourceMap: true }
+                    // },
                     'sass-loader',
                 ],
             },
             {
                 test: /\.less$/,
                 use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            publicPath: '../',
-                        },
-                    },
-                    CssLoaderOptions,
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
                     'postcss-loader',
                     {
                         loader: 'less-loader',
@@ -185,16 +174,14 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(png|jpe?g|gif|svg)$/,
-                type: 'asset/resource',
-                // dependency: { not: ['url'] },
+                test: /\.(png|jpg|gif)$/i,
                 use: [
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 10000,
+                            limit: 8192,
+                            mimetype: 'image/png',
                             esModule: false,
-                            // name: '[name].[hash:7].[ext]',
                             name: path.posix.join('static', 'img/[name].[hash:7].[ext]'),
                         },
                     },

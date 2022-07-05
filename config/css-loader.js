@@ -43,13 +43,15 @@
 module.exports = {
     loader: 'css-loader',
     options: {
-        modules: {
-            // 生成的类名的模式'[path][name]_[local]--[hash:base64:5]'
-            // [path]当前文件的路径(基于src:[src-views-home])
-            // [name]当前文件的名字
-            // [local]当前类名(className='Home')
-            // [hash:base64:5]基于base64的hash字符串截取5字符
-            localIdentName: '[local]--[hash:base64:5]',
-        },
+        // modules: {
+        //     // 生成的类名的模式'[path][name]_[local]--[hash:base64:5]'
+        //     // [path]当前文件的路径(基于src:[src-views-home])
+        //     // [name]当前文件的名字
+        //     // [local]当前类名(className='Home')
+        //     // [hash:base64:5]基于base64的hash字符串截取5字符
+        //     localIdentName: '[local]--[hash:base64:5]',
+        // },
+        modules: true,
+        localIdentName: '[local]--[hash:base64:5]',
     },
 }
