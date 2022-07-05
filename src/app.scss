@@ -38,6 +38,7 @@
         #root{
             .Sider{
                 transform: translate(0);
+                transition: transform 0.3s linear;
             }
             .MainContainer{
                 margin-left: 16.4rem;
@@ -49,6 +50,7 @@
         #root{
             .Sider{
                 width: 20rem;
+                transition: width 0.3s linear;
             }
             .MainContainer{
                 margin-left: 20rem;

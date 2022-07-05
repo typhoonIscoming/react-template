@@ -1,7 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 
-import './index.scss';
+import mainStyle from './index.scss';
 
 const MainContainer = styled.div`
     display: block;
@@ -14,7 +14,7 @@ const MainContainer = styled.div`
 `
 
 export default function Main(props) {
-    return <MainContainer className="MainContainer">
+    return <MainContainer className={['MainContainer', mainStyle.MainContainer]}>
         <div className="MainContent">
             { props.children }
         </div>

@@ -49,7 +49,7 @@ module.exports = {
             // [name]当前文件的名字
             // [local]当前类名(className='Home')
             // [hash:base64:5]基于base64的hash字符串截取5字符
-            localIdentName: '[path][name]_[local]--[hash:base64:5]',
+            localIdentName: '[local]--[hash:base64:5]',
         },
     },
 }
