@@ -17,3 +17,5 @@ const routes = [
 ];
 
 export default routes;
+
+export const serverDir = '/react-template';

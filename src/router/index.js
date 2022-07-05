@@ -7,6 +7,7 @@ import Spinner from '@/components/spinner';
 import langs from '@/locales';
 import LangContext from '@/context/langContext';
 import Guarder from './guard';
+import { serverDir } from './routes';
 
 export default function Router() {
     const storedLocale = localStorage.getItem('locale') || window.navigator.language || 'zh-CN';
@@ -20,7 +21,7 @@ export default function Router() {
                 locale={locale}
                 defaultLocale='zh-CN'
             >
-                <BrowserRouter>
+                <BrowserRouter basename={'/react-template'}>
                     <Suspense fallback={<Spinner />}>
                         <Guarder />
                     </Suspense>
