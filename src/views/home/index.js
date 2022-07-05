@@ -26,6 +26,9 @@ export default function Home(props) {
             return list.concat([{ name: `bob_${random}` }]);
         });
     };
+    const goToMain = () => {
+        props.history.push('/main')
+    }
     return (
         <RouterContext.Provider value={props}>
             <Layout className="LayoutHome">
@@ -60,6 +63,7 @@ export default function Home(props) {
                             })}
                         </TransitionGroup>
                         <Button onClick={onSetList}>增加</Button>
+                        <Button onClick={() => goToMain()}>Main</Button>
                         <div className={homeStyle.bgBox}>这里有背景图片</div>
                     </div>
                 </div>

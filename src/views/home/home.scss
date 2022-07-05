@@ -19,15 +19,13 @@
     }
 }
 
-:local{
-    .Home {
-        width: 100%;
-        .bgBox{
-            width: 80px;
-            height: 80px;
-            background: greenyellow url('~@/assets/xuegao.png')no-repeat;
-            background-size: contain;
-        }
+.Home {
+    width: 100%;
+    .bgBox{
+        width: 80px;
+        height: 80px;
+        background: greenyellow url('~@/assets/xuegao.png')no-repeat;
+        background-size: contain;
     }
 }
 
