@@ -9,7 +9,7 @@ export default function Layout(props) {
     // console.log('layout router', router);
     
     return (
-        <div className={`Layout ${props.className}`} style={{ position: 'relative' }}>
+        <div className={`Layout ${props.className || ''}`} style={{ position: 'relative' }}>
             <header className='NavBar'>
                 header
             </header>
