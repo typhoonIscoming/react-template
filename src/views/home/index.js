@@ -9,6 +9,8 @@ import {
     TransitionGroup,
 } from "react-transition-group";
 
+import TrappingWater from 'components/algorithm/trapping-rain-water';
+
 import homeStyle from "./home.scss";
 
 export default function Home(props) {
@@ -65,6 +67,7 @@ export default function Home(props) {
                         <Button onClick={onSetList}>增加</Button>
                         <Button onClick={() => goToMain()}>Main</Button>
                         <div className={homeStyle.bgBox}>这里有背景图片</div>
+                        <TrappingWater />
                     </div>
                 </div>
             </Layout>
