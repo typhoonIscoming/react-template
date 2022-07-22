@@ -1,6 +1,5 @@
 export default (fn) => {
     const length = fn.length;
-    console.log(fn, fn.length)
     let args = [];
     return function curryFn() {
         const curryArray = Array.prototype.slice.call(arguments);
